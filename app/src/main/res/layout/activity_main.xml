@@ -15,6 +15,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="4dp"
         android:clickable="true"
+        app:rippleColor="@color/aureolin"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <LinearLayout
@@ -26,20 +27,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
+                android:background="@drawable/standart_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Button" />
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button2"
+                android:background="@drawable/standart_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Button" />
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button3"
+                android:background="@drawable/standart_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -49,7 +53,9 @@
         <ListView
             android:id="@+id/View"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll">
 
         </ListView>
 
