@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">I\'ll think about it</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account">account</string>
+    <string name="stat">stat</string>
+    <string name="todaysTask">today\'s task</string>
+    <string name="createTask">create task</string>
+    <string name="support">support</string>
 </resources>
