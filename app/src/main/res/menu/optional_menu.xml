@@ -4,4 +4,7 @@
     <item android:id="@+id/support"
         android:title="@string/support"
         android:icon="@android:drawable/ic_menu_add"/>
+    <item android:id="@+id/logOut"
+        android:title="@string/Logout"
+        android:icon="@android:drawable/ic_menu_add"/>
 </menu>

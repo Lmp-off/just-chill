@@ -20,17 +20,10 @@ public class FragmentFactory {
 
     public Fragment create(int number) {
         items = items();
-        System.out.println("a" + items.get(0).getTitle());
-        // RvAdapter adapter = new RvAdapter(12, items);
         fragment = new RvFragment();
-
-        RvAdapter adapter2 = new RvAdapter(24, items);
-        fragment2 = new RvFragment();
-        System.out.println("cont" + fragment2.getContext());
-        System.out.println(fragment.getContext());
         switch (number) {
             case 0:
-                return new RvFragment();
+                return new BlankFragment();
             default:
                 return new RvFragment();
 

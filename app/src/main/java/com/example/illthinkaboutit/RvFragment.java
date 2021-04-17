@@ -19,7 +19,6 @@ public class RvFragment extends Fragment {
     RecyclerView topic;
     LinearLayoutManager manager;
     public RvFragment() {
-        FragmentFactory f = new FragmentFactory();
         this.adapter=new RvAdapter(24,FragmentFactory.items());
         manager  = new LinearLayoutManager(getContext());
     }
@@ -41,7 +40,10 @@ public class RvFragment extends Fragment {
         topic.setLayoutManager(manager);
         topic.setHasFixedSize(true);
         topic.setAdapter(this.adapter);
-
-
     }
+    public void setAdapter(Adapter adapter){
+        this.adapter=adapter;
+        topic.setAdapter(adapter);
+    }
+
 }

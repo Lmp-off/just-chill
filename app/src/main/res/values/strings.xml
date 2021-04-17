@@ -7,4 +7,5 @@
     <string name="todaysTask">today\'s task</string>
     <string name="createTask">create task</string>
     <string name="support">support</string>
+    <string name="Logout">Log out</string>
 </resources>

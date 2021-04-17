@@ -1,5 +1,5 @@
 package com.example.illthinkaboutit;
-
+//Todo:Remove class use google account instead this
 public class Author {
     private String name;
     private int id;
