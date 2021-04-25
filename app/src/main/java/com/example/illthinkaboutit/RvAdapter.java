@@ -2,27 +2,16 @@ package com.example.illthinkaboutit;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Icon;
-import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
@@ -30,12 +19,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
     private static int currtitile;
     private int numbItems;
     Context context;
-    ArrayList<ViewItem> items;
+    ArrayList<Item> items;
     static {
         currtitile=0;
     }
 
-    public RvAdapter(int numbItems, ArrayList<ViewItem> items) {
+    public RvAdapter(int numbItems, ArrayList<Item> items) {
         this.numbItems = numbItems;
         this.items=items;
     }

@@ -22,23 +22,39 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+import java.util.Map;
+//todo: save instance if u have't internet connection
 public class MainActivity extends AppCompatActivity {
     Button button;
     ViewPager pager;
-    GoogleSignInAccount account;
+    static GoogleSignInAccount account;
     GoogleSignInOptions gso;
     GoogleSignInClient client;
+    FirebaseFirestore firebaseFirestore;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Intent in = this.getIntent();
         Bundle bundle = in.getExtras();
         account = (GoogleSignInAccount) bundle.get("Account");
         gso = (GoogleSignInOptions) bundle.get("GSO");
         client = GoogleSignIn.getClient(getApplicationContext(),gso);
+
+        DBManager manager = new DBManager();
+
         pager = findViewById(R.id.viewPager);
         button = findViewById(R.id.button5);
         button.setText(account.getDisplayName());

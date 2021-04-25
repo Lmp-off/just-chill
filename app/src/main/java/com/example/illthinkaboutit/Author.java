@@ -2,9 +2,9 @@ package com.example.illthinkaboutit;
 //Todo:Remove class use google account instead this
 public class Author {
     private String name;
-    private int id;
+    private String id;
 
-    public Author(String name, int id) {
+    public Author(String name, String id) {
         this.name = name;
         this.id = id;
     }
@@ -13,7 +13,7 @@ public class Author {
         return name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 }

@@ -2,16 +2,18 @@ package com.example.illthinkaboutit;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Comparator;
 
-public class ViewItem {
-    private final int id;
+public class Item {
+    private int id;
     private final String title;
     private final String text;
     private boolean stared;
     private int stars;
     private final Author author;
-    public ViewItem(@NonNull int id,String title, String text, boolean stared, int stars, Author author) {
+    public Item(@NonNull int id, String title, String text, boolean stared, int stars, Author author) {
         this.title = title;
         this.text = text;
         this.stared = stared;

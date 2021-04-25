@@ -2,25 +2,27 @@ package com.example.illthinkaboutit;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class RvFragment extends Fragment {
     Adapter adapter;
     RecyclerView topic;
-    LinearLayoutManager manager;
+    LinearLayoutManager Lmanager;
+    DBManager manager= new DBManager();
     public RvFragment() {
-        this.adapter=new RvAdapter(24,FragmentFactory.items());
-        manager  = new LinearLayoutManager(getContext());
+
+        Lmanager  = new LinearLayoutManager(getContext());
     }
 
     public RvFragment(Adapter adapter){
@@ -34,15 +36,25 @@ public class RvFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        topic = getActivity().findViewById(R.id.Topics);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-        topic =getActivity().findViewById(R.id.Topics);
-        topic.setLayoutManager(manager);
+        //topic =getActivity().findViewById(R.id.Topics);
+        ArrayList<Item> arrayList =manager.getAllTasksData(this);
+        topic.setLayoutManager(Lmanager);
         topic.setHasFixedSize(true);
         topic.setAdapter(this.adapter);
     }
-    public void setAdapter(Adapter adapter){
-        this.adapter=adapter;
+    //
+    public void setAdapter(ArrayList<Item> items){
+        ArrayList<Item> item=new ArrayList<>();
+        item.add(new Item(0,"CHEPACH","",false,1,null));
+        this.adapter=new RvAdapter(items.size(),items);
         topic.setAdapter(adapter);
     }
 
