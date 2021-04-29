@@ -35,12 +35,13 @@ public class BlankFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.appCompatButtonNew:
-                    //Fm.setAdapter(Fm.NEW)
+
                 case R.id.appCompatButtonTopics:
-                    //Fm.setAdapter(Fm.NEW)
+
                 case R.id.btn_Create:
                     Intent intent = new Intent(getContext(), CreateTaskActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,0);
+                    //overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
             }
         }
     }

@@ -21,7 +21,6 @@ public class RvFragment extends Fragment {
     LinearLayoutManager Lmanager;
     DBManager manager= new DBManager();
     public RvFragment() {
-
         Lmanager  = new LinearLayoutManager(getContext());
     }
 
@@ -39,21 +38,21 @@ public class RvFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         topic = getActivity().findViewById(R.id.Topics);
+       //manager.getAllTasksData(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        //topic =getActivity().findViewById(R.id.Topics);
-        ArrayList<Item> arrayList =manager.getAllTasksData(this);
+        DBInitThread thread = new DBInitThread(this);
+        thread.start();
+       //manager.getAllTasksData(this);
         topic.setLayoutManager(Lmanager);
         topic.setHasFixedSize(true);
         topic.setAdapter(this.adapter);
     }
     //
     public void setAdapter(ArrayList<Item> items){
-        ArrayList<Item> item=new ArrayList<>();
-        item.add(new Item(0,"CHEPACH","",false,1,null));
         this.adapter=new RvAdapter(items.size(),items);
         topic.setAdapter(adapter);
     }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,14 +46,17 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         holder.star.setOnClickListener(view->{
+            DBManager dbManager = new DBManager();
             if (items.get(position).isStared()){
                 items.get(position).setStared(false);
                 items.get(position).setStars(items.get(position).getStars()-1);
+                dbManager.RemoveStar(items.get(position).getId(),MainActivity.account.getId());
             }
             else {
                 items.get(position).setStared(true);
                 items.get(position).setStars(items.get(position).getStars()+1);
-
+                Log.d("Debug",items.get(position).getId());
+                dbManager.AddStar(items.get(position).getId(),MainActivity.account.getId());
             }
             holder.bind(position);
         });

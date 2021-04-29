@@ -79,5 +79,6 @@ public class AccountActivity extends AppCompatActivity {
         intent.putExtra("Account",account);
         intent.putExtra("GSO", gso);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_bottom);
     }
 }

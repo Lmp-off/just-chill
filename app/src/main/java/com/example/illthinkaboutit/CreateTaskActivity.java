@@ -17,7 +17,6 @@ public class CreateTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
-
         Title = findViewById(R.id.tv_title);
         Task = findViewById(R.id.tv_task);
         button = findViewById(R.id.button6);
@@ -31,8 +30,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                 DBItem item = new DBItem(title,text);
                 DBManager.add(item);
 
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

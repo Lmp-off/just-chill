@@ -12,7 +12,6 @@ public class FragmentFactory {
 
 
     public Fragment create(int number) {
-        items = items();
         fragment = new RvFragment();
         switch (number) {
             case 0:
@@ -23,7 +22,7 @@ public class FragmentFactory {
         }
     }
 
-    static ArrayList<Item> items() {
+   /* static ArrayList<Item> items() {
         ArrayList<Item> items = new ArrayList<>();
         Author author = new Author("Ronald", "1");
         items.add(new Item(1, "title 1", "", false, 25000, author));
@@ -51,5 +50,5 @@ public class FragmentFactory {
         items.add(new Item(11, "title 11", "", false, 12, author));
         items.add(new Item(12, "title 12", "", false, 0, author));
         return items;
-    }
+    }*/
 }

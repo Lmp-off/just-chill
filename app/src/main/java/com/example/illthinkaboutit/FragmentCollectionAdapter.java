@@ -2,6 +2,7 @@ package com.example.illthinkaboutit;
 
 import android.os.Build;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -13,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 public class FragmentCollectionAdapter extends FragmentPagerAdapter {
+
     public FragmentCollectionAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }

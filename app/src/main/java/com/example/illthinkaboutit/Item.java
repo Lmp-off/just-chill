@@ -7,13 +7,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Comparator;
 
 public class Item {
-    private int id;
+    private String id;
     private final String title;
     private final String text;
     private boolean stared;
     private int stars;
     private final Author author;
-    public Item(@NonNull int id, String title, String text, boolean stared, int stars, Author author) {
+    public Item(@NonNull String id, String title, String text, boolean stared, int stars, Author author) {
         this.title = title;
         this.text = text;
         this.stared = stared;
@@ -22,7 +22,7 @@ public class Item {
         this.id=id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
