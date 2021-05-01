@@ -34,6 +34,7 @@ public class DBManager{
     static {
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
+    //todo:load another data
     public synchronized void getAllTasksData(RvFragment fragment){
         arrayList.clear();
         firebaseFirestore
@@ -59,10 +60,29 @@ public class DBManager{
                             }
                         }
                         //Todo:remove kostyl'
-                        fragment.setAdapter(arrayList);
+                        FragmentFactory fragmentFactory =FragmentFactory.getFactory();
+                        fragmentFactory.setContent(arrayList);
+                        //fragment.setAdapter(arrayList);
                     }
                 });
-    }//add to new collection where id = user id. write all stared task
+    }
+    public void getTaskDataByPopularity(){
+        firebaseFirestore.collection("tasks")
+                .whereLessThan("stars",1)
+                .orderBy("stars")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("MYTESTTEST","2");
+                        for (DocumentSnapshot d:task.getResult().getDocuments()
+                        ) {
+                            Log.d("MYTESTTEST","1");
+                        }
+                    }
+                });
+    }
+
     public static void add(DBItem item){
         firebaseFirestore.collection(DBCollections.Tasks.getName()).add(item);
     }
@@ -86,9 +106,7 @@ public class DBManager{
     public synchronized void AccountCheck(String googleId){
         Map<String,Object> map = new HashMap<>();
         map.put("taskid",new ArrayList<String>());
-        if (!strtasks.isEmpty()){
 
-        }
         firebaseFirestore.collection("users").document(googleId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
            @Override
            public void onComplete(@NonNull Task<DocumentSnapshot> task) {

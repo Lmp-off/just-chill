@@ -24,8 +24,9 @@ public class RvFragment extends Fragment {
         Lmanager  = new LinearLayoutManager(getContext());
     }
 
-    public RvFragment(Adapter adapter){
-        this.adapter=adapter;
+    public RvFragment(ArrayList<Item> items){
+        Lmanager  = new LinearLayoutManager(getContext());
+        this.adapter=new RvAdapter(items.size(),items);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,12 +45,15 @@ public class RvFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        DBInitThread thread = new DBInitThread(this);
-        thread.start();
        //manager.getAllTasksData(this);
+
         topic.setLayoutManager(Lmanager);
         topic.setHasFixedSize(true);
         topic.setAdapter(this.adapter);
+        if(adapter==null) {
+            DBInitThread thread = new DBInitThread(this);
+            thread.start();
+        }
     }
     //
     public void setAdapter(ArrayList<Item> items){

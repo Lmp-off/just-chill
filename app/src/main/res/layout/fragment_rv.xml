@@ -6,13 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RvFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Topics"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scrollbarSize="5dp"
-            tools:itemCount="5"
-            tools:layout_editor_absoluteY="16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Topics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbarSize="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="5"
+        tools:layout_editor_absoluteY="16dp"
+        tools:listitem="5" />
     </LinearLayout>

@@ -81,7 +81,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
             stars= itemView.findViewById(R.id.textView4);
             star.setColorFilter(Color.GRAY,PorterDuff.Mode.MULTIPLY);
         }
-        @SuppressLint("ResourceAsColor")
         public void bind(int i){
             tv_id.setText(String.valueOf(i));
             tv_title.setText(items.get(i).getTitle());

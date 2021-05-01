@@ -27,7 +27,7 @@ public class FragmentCollectionAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        FragmentFactory fragmentFactory =new FragmentFactory();
+        FragmentFactory fragmentFactory =FragmentFactory.getFactory();
         return fragmentFactory.create(position);
     }
 

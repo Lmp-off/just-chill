@@ -76,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    buttonS.setBackgroundColor(Color.WHITE);
-                    buttonF.setBackgroundColor(Color.RED);
+                    buttonS.setBackgroundColor(Color.GRAY);
+                    buttonF.setBackgroundColor(Color.DKGRAY);
                 } else {
-                    buttonF.setBackgroundColor(Color.WHITE);
-                    buttonS.setBackgroundColor(Color.RED);
+                    buttonF.setBackgroundColor(Color.GRAY);
+                    buttonS.setBackgroundColor(Color.DKGRAY);
                 }
             }
             @Override
@@ -95,6 +95,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showPopupMenu(v);
                 Log.i("Loga", "d" + pager.getTransitionName());
+            }
+        });
+        buttonF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pager.setCurrentItem(0);
+            }
+        });
+        buttonS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pager.setCurrentItem(1);
             }
         });
     }

@@ -31,6 +31,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                 DBManager.add(item);
 
                 finish();
+                overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_bottom);
             }
         });
     }
