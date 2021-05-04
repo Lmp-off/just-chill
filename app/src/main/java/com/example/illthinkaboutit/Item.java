@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Item {
+public class Item implements Serializable {
     private String id;
     private final String title;
     private final String text;

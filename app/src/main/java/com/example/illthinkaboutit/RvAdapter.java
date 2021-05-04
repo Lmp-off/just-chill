@@ -1,7 +1,7 @@
 package com.example.illthinkaboutit;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.Log;
@@ -37,14 +37,22 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
         System.out.println("context"+context);
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view=layoutInflater.inflate((int)R.layout.rv_frame,parent,false);
+
         MyHolder holder=new MyHolder(view);
+
         holder.tv_title.setText("text:"+currtitile);
         currtitile++;
         return holder;
 
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        holder.tv_title.setOnClickListener(view->{
+            Intent intent = new Intent(context,ShowTaskActivity.class);
+            intent.putExtra("Item", items.get(position));
+            context.startActivity(intent);
+        });
         holder.star.setOnClickListener(view->{
             DBManager dbManager = new DBManager();
             if (items.get(position).isStared()){
@@ -56,13 +64,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
                 items.get(position).setStared(true);
                 items.get(position).setStars(items.get(position).getStars()+1);
                 Log.d("Debug",items.get(position).getId());
-                dbManager.AddStar(items.get(position).getId(),MainActivity.account.getId());
+                dbManager.AddStarredTesk(items.get(position).getId(),MainActivity.account.getId());
             }
             holder.bind(position);
         });
         holder.bind(position);
     }
-
     @Override
     public int getItemCount() {
         return numbItems;
@@ -93,3 +100,4 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
         }
     }
 }
+

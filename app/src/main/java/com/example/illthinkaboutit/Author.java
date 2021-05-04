@@ -1,6 +1,9 @@
 package com.example.illthinkaboutit;
+
+import java.io.Serializable;
+
 //Todo:Remove class use google account instead this
-public class Author {
+public class Author implements Serializable {
     private String name;
     private String id;
 

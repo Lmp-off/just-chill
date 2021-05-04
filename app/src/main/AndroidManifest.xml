@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IllThinkAboutIt">
-        <activity android:name=".CreateTaskActivity"></activity>
+        <activity android:name=".ShowTaskActivity"></activity>
+        <activity android:name=".CreateTaskActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".AccountActivity">
             <intent-filter>

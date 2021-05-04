@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Date;
+
 public class CreateTaskActivity extends AppCompatActivity {
     //Todo: save instance if activity closed suddenly
     EditText Title;
@@ -27,7 +29,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                 String title=Title.getText().toString();
                 String text=Task.getText().toString();
 
-                DBItem item = new DBItem(title,text);
+                DBItem item = new DBItem(title,text,new Date().getTime());
                 DBManager.add(item);
 
                 finish();

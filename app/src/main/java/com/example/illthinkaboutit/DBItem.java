@@ -7,6 +7,7 @@ public class DBItem implements Serializable {
     private String Task;
     private int Stars;
     private Author author;
+    private long created_date;
 
     public DBItem(String title, String text, int stars) {
         this.Title = title;
@@ -15,9 +16,10 @@ public class DBItem implements Serializable {
         this.author = new Author(MainActivity.account.getDisplayName(),MainActivity.account.getId());
     }
 
-    public DBItem(String title, String text) {
+    public DBItem(String title, String text,long date) {
         this.Title = title;
         this.Task = text;
+        this.created_date =date;
         this.author = new Author(MainActivity.account.getDisplayName(),MainActivity.account.getId());
         this.Stars =0;
     }
@@ -36,6 +38,10 @@ public class DBItem implements Serializable {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public long getCreated_date() {
+        return created_date;
     }
 
     public void setTitle(String title) {

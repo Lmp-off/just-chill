@@ -21,7 +21,7 @@ public class DBInitThread extends Thread{
             }
         }
         DBManager dbManager = new DBManager();
-        dbManager.getAllTasksData(fragment);
+        dbManager.getAllTasksData();
 
     }
 }

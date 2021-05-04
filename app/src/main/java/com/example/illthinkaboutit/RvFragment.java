@@ -19,6 +19,7 @@ public class RvFragment extends Fragment {
     Adapter adapter;
     RecyclerView topic;
     LinearLayoutManager Lmanager;
+    static boolean iscreated=false;
     DBManager manager= new DBManager();
     public RvFragment() {
         Lmanager  = new LinearLayoutManager(getContext());
@@ -46,14 +47,16 @@ public class RvFragment extends Fragment {
     public void onStart() {
         super.onStart();
        //manager.getAllTasksData(this);
-
+        if (!iscreated){
         topic.setLayoutManager(Lmanager);
         topic.setHasFixedSize(true);
-        topic.setAdapter(this.adapter);
+        }
         if(adapter==null) {
             DBInitThread thread = new DBInitThread(this);
             thread.start();
         }
+        topic.setAdapter(this.adapter);
+        iscreated=true;
     }
     //
     public void setAdapter(ArrayList<Item> items){
