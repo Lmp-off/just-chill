@@ -2,23 +2,20 @@ package com.example.illthinkaboutit;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.io.Serializable;
-import java.util.Comparator;
 
 public class Item implements Serializable {
     private String id;
     private final String title;
     private final String text;
-    private boolean stared;
-    private int stars;
+    private boolean isStared;
+    private int numberOfStars;
     private final Author author;
     public Item(@NonNull String id, String title, String text, boolean stared, int stars, Author author) {
         this.title = title;
         this.text = text;
-        this.stared = stared;
-        this.stars = stars;
+        this.isStared = stared;
+        this.numberOfStars = stars;
         this.author = author;
         this.id=id;
     }
@@ -36,11 +33,11 @@ public class Item implements Serializable {
     }
 
     public boolean isStared() {
-        return stared;
+        return isStared;
     }
 
-    public int getStars() {
-        return stars;
+    public int getNumberOfStars() {
+        return numberOfStars;
     }
 
     public Author getAuthor() {
@@ -48,11 +45,11 @@ public class Item implements Serializable {
     }
 
     public void setStared(boolean stared) {
-        this.stared = stared;
+        this.isStared = stared;
     }
 
-    public void setStars(int stars) {
-        this.stars = stars;
+    public void setNumberOfStars(int numberOfStars) {
+        this.numberOfStars = numberOfStars;
     }
 
 }

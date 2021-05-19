@@ -11,10 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IllThinkAboutIt">
-        <activity android:name=".ShowTaskActivity"></activity>
-        <activity android:name=".CreateTaskActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".AccountActivity">
+        <activity android:name=".MyTaskActivity"></activity>
+        <activity
+            android:name=".ShowTaskActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CreateTaskActivity"
+            android:screenOrientation="sensorPortrait"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".AccountActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

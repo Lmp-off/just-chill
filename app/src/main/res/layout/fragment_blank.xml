@@ -9,6 +9,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButtonNew"
         android:text="newest"
+        android:background="@drawable/standart_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,6 +18,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButtonTopics"
         android:text="Topics"
+        android:background="@drawable/standart_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +26,19 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_Create"
         android:text="Create"
+        android:background="@drawable/standart_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appCompatButtonTopics" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_MyTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My tasks"
+        android:background="@drawable/standart_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Create" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

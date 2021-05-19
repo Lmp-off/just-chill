@@ -34,7 +34,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context=parent.getContext();
-        System.out.println("context"+context);
+        Log.d("MYTESTTEST", "19999999999999999");
+        System.out.println("context"+context.toString());
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view=layoutInflater.inflate((int)R.layout.rv_frame,parent,false);
 
@@ -57,14 +58,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
             DBManager dbManager = new DBManager();
             if (items.get(position).isStared()){
                 items.get(position).setStared(false);
-                items.get(position).setStars(items.get(position).getStars()-1);
-                dbManager.RemoveStar(items.get(position).getId(),MainActivity.account.getId());
+                items.get(position).setNumberOfStars(items.get(position).getNumberOfStars()-1);
+                dbManager.RemoveStar(items.get(position).getId(),MainActivity.getAccountId());
             }
             else {
                 items.get(position).setStared(true);
-                items.get(position).setStars(items.get(position).getStars()+1);
+                items.get(position).setNumberOfStars(items.get(position).getNumberOfStars()+1);
                 Log.d("Debug",items.get(position).getId());
-                dbManager.AddStarredTesk(items.get(position).getId(),MainActivity.account.getId());
+                dbManager.AddStarredTesk(items.get(position).getId(),MainActivity.getAccountId());
             }
             holder.bind(position);
         });
@@ -91,7 +92,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyHolder> {
         public void bind(int i){
             tv_id.setText(String.valueOf(i));
             tv_title.setText(items.get(i).getTitle());
-            stars.setText(String.valueOf(items.get(i).getStars()));
+            stars.setText(String.valueOf(items.get(i).getNumberOfStars()));
             if (items.get(i).isStared())star.setColorFilter(Color.CYAN,PorterDuff.Mode.MULTIPLY);
             else star.setColorFilter(Color.GRAY,PorterDuff.Mode.MULTIPLY);
         }

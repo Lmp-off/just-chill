@@ -1,5 +1,6 @@
 package com.example.illthinkaboutit;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +21,13 @@ public class RvFragment extends Fragment {
     Adapter adapter;
     RecyclerView topic;
     LinearLayoutManager Lmanager;
-    static boolean iscreated=false;
+    boolean iscreated=false;
     DBManager manager= new DBManager();
     public RvFragment() {
         Lmanager  = new LinearLayoutManager(getContext());
     }
 
-    public RvFragment(ArrayList<Item> items){
-        Lmanager  = new LinearLayoutManager(getContext());
-        this.adapter=new RvAdapter(items.size(),items);
+    public RvFragment(Context context){
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,14 +39,14 @@ public class RvFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        topic = getActivity().findViewById(R.id.Topics);
+       this.topic = getActivity().findViewById(R.id.Topics);
        //manager.getAllTasksData(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-       //manager.getAllTasksData(this);
+
         if (!iscreated){
         topic.setLayoutManager(Lmanager);
         topic.setHasFixedSize(true);
@@ -61,6 +61,7 @@ public class RvFragment extends Fragment {
     //
     public void setAdapter(ArrayList<Item> items){
         this.adapter=new RvAdapter(items.size(),items);
+
         topic.setAdapter(adapter);
     }
 

@@ -2,7 +2,6 @@ package com.example.illthinkaboutit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import java.util.Date;
 
 public class CreateTaskActivity extends AppCompatActivity {
-    //Todo: save instance if activity closed suddenly
     EditText Title;
     EditText Task;
     Button button;
@@ -30,8 +28,10 @@ public class CreateTaskActivity extends AppCompatActivity {
                 String text=Task.getText().toString();
 
                 DBItem item = new DBItem(title,text,new Date().getTime());
-                DBManager.add(item);
 
+                DBManager dbManager= new DBManager();
+                dbManager.addItem(item);
+                dbManager.setAllTasksData();
                 finish();
                 overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_bottom);
             }

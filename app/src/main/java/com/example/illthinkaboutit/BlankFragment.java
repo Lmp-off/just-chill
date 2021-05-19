@@ -6,22 +6,20 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.util.Date;
-
 public class BlankFragment extends Fragment {
     Button popular;
     Button newest;
     Button create;
+    Button myTasks;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 
@@ -31,19 +29,21 @@ public class BlankFragment extends Fragment {
         create = getActivity().findViewById(R.id.btn_Create);
         newest = getActivity().findViewById(R.id.appCompatButtonNew);
         popular = getActivity().findViewById(R.id.appCompatButtonTopics);
+        myTasks = getActivity().findViewById(R.id.btn_MyTasks);
 
         OnClick onClick = new OnClick();
         create.setOnClickListener(onClick);
         newest.setOnClickListener(onClick);
         popular.setOnClickListener(onClick);
+        myTasks.setOnClickListener(onClick);
     }
 
     //todo:make fragment manager
-    class OnClick implements View.OnClickListener{
+    class OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             DBManager dbManager = new DBManager();
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.appCompatButtonNew:
                     dbManager.setTaskDataByDate();
                     break;
@@ -52,9 +52,14 @@ public class BlankFragment extends Fragment {
                     break;
                 case R.id.btn_Create:
                     Intent intent = new Intent(getContext(), CreateTaskActivity.class);
-                    startActivityForResult(intent,1);
-                    //overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom);
+                    startActivityForResult(intent, 1);
+                    return;
+                case R.id.btn_MyTasks:
+                    Intent intenta = new Intent(getContext(), MyTaskActivity.class);
+                    startActivity(intenta);
+                    return;
             }
+            MainActivity.showTaskPage();
         }
     }
 }

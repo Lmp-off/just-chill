@@ -28,7 +28,7 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
+                .requestEmail().requestProfile()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         SignInButton button = findViewById(R.id.signIn);

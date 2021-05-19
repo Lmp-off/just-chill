@@ -4,8 +4,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,23 +19,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-
+//todo types of tasks circles
+//todo if last item in rv  select items where (date rating) different than the last item
 //todo: save instance if u have't internet connection
 public class MainActivity extends AppCompatActivity {
-    Button button;
-    ViewPager pager;
-    Button buttonF;
-    Button buttonS;
-    static GoogleSignInAccount account;
-    ImageView imageView;
-    static ArrayList<String> userData = new ArrayList<>();
-    GoogleSignInOptions gso;
+    private static ViewPager pager;
+    private ImageView imageView;
 
-    GoogleSignInClient client;
-    FirebaseFirestore firebaseFirestore;
+    private Button buttonF;
+    private Button buttonS;
+    private Button menuButton;
+
+    private static GoogleSignInAccount account;
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient client;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -43,54 +41,56 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DBManager manager = new DBManager();
+
         Intent in = this.getIntent();
         Bundle bundle = in.getExtras();
+
         account = GoogleSignIn.getLastSignedInAccount(getApplication());
         gso = (GoogleSignInOptions) bundle.get("GSO");
         client = GoogleSignIn.getClient(getApplicationContext(), gso);
-        DBManager manager = new DBManager();
+
         manager.AccountCheck(account.getId());
     }
 
     //peremestit'
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onStart() {
         super.onStart();
 
-        imageView = findViewById(R.id.imageView);
         pager = findViewById(R.id.viewPager);
-        button = findViewById(R.id.button5);
+        menuButton = findViewById(R.id.button5);
         buttonF = findViewById(R.id.btn_first);
         buttonS = findViewById(R.id.btn_second);
 
-        button.setText(account.getDisplayName());
+        menuButton.setText(account.getDisplayName());
 
-        FragmentCollectionAdapter adapter = new FragmentCollectionAdapter(getSupportFragmentManager());
-
+        MainFragmentCollectionAdapter adapter = new MainFragmentCollectionAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    buttonS.setBackgroundColor(Color.GRAY);
-                    buttonF.setBackgroundColor(Color.DKGRAY);
+                    buttonS.setBackgroundResource(R.color.aureolin);
+                    buttonF.setBackgroundResource(R.color.Dark_aureolin);
                 } else {
-                    buttonF.setBackgroundColor(Color.GRAY);
-                    buttonS.setBackgroundColor(Color.DKGRAY);
+                    buttonF.setBackgroundResource(R.color.aureolin);
+                    buttonS.setBackgroundResource(R.color.Dark_aureolin);
                 }
             }
             @Override
             public void onPageScrollStateChanged(int state) {
-               // buttonF.setBackgroundColor(Color.GREEN);
             }
         });
         pager.setCurrentItem(1);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopupMenu(v);
@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    public static void showTaskPage(){
+        pager.setCurrentItem(1);
+    }
     private void showPopupMenu(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.inflate(R.menu.optional_menu);
@@ -124,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
                         LogOutGoogle();
                         break;
                     case R.id.support:
-                        DBManager dbManager = new DBManager();
-                        dbManager.test();
                         break;
 
                 }
@@ -147,10 +147,16 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MYTESTResume", "true");
     }
 
-    //Todo:Ref(func has more than 1 action)
     private void LogOutGoogle() {
         client.signOut();
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
+    public static String getAccountId(){
+        return account.getId();
+    }
+    public static String getDisplayedName(){
+        return account.getDisplayName();
+    }
+
 }

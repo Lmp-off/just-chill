@@ -1,7 +1,5 @@
 package com.example.illthinkaboutit;
 
-import androidx.fragment.app.Fragment;
-
 public class DBInitThread extends Thread{
     RvFragment fragment;
 
@@ -21,7 +19,7 @@ public class DBInitThread extends Thread{
             }
         }
         DBManager dbManager = new DBManager();
-        dbManager.getAllTasksData();
+        dbManager.setAllTasksData();
 
     }
 }
@@ -36,7 +34,7 @@ class A extends Thread{
     public void run() {
         synchronized (this){
         DBManager dbManager = new DBManager();
-        dbManager.AccountCheck(MainActivity.account.getId());
+        dbManager.AccountCheck(MainActivity.getAccountId());
         //TODO make  notify by complete task
             try {
                 wait(500);

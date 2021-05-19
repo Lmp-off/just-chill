@@ -10,8 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical">
+        android:background="@color/back"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
 
 
         <LinearLayout
@@ -29,14 +30,9 @@
                     android:id="@+id/button5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/standart_buttons"
                     android:text="Button" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -46,15 +42,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:outlineProvider="bounds"
+                android:text="Tools" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_second"
@@ -62,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Tasks" />
         </LinearLayout>
 
         <LinearLayout
