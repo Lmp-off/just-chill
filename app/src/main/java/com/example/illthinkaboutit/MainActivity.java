@@ -20,9 +20,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
-//todo types of tasks circles
-//todo if last item in rv  select items where (date rating) different than the last item
-//todo: save instance if u have't internet connection
 public class MainActivity extends AppCompatActivity {
     private static ViewPager pager;
     private ImageView imageView;
@@ -50,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         gso = (GoogleSignInOptions) bundle.get("GSO");
         client = GoogleSignIn.getClient(getApplicationContext(), gso);
 
-        manager.AccountCheck(account.getId());
     }
 
     //peremestit'

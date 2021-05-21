@@ -74,15 +74,22 @@ public class DBManager {
                     firebaseFirestore.collection("tasks").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            DocumentSnapshot snapshot = task.getResult();
-                            item.add(new Item(snapshot.getId()
-                                    , snapshot.get(DBFields.TITLE.getName()).toString()
-                                    , snapshot.get(DBFields.TASK.getName()).toString()
-                                    , strtasks.contains(snapshot.getId())
-                                    , Integer.parseInt(String.valueOf(snapshot.get(DBFields.STARS.getName())))
-                                    , new Author((HashMap<String, Object>) snapshot.get("author"))));
-                            view.setAdapter(new RvAdapter(item.size(), item));
-
+                            try {
+                                DocumentSnapshot snapshot = task.getResult();
+                                item.add(new Item(snapshot.getId()
+                                        , snapshot.get(DBFields.TITLE.getName()).toString()
+                                        , snapshot.get(DBFields.TASK.getName()).toString()
+                                        , strtasks.contains(snapshot.getId())
+                                        , Integer.parseInt(String.valueOf(snapshot.get(DBFields.STARS.getName())))
+                                        , new Author((HashMap<String, Object>) snapshot.get("author"))));
+                                view.setAdapter(new RvAdapter(item.size(), item));
+                            }
+                            catch (NullPointerException e){
+                                firebaseFirestore.collection(DBCollections.TASKS.getName()).document(id).delete();
+                            }
+                            catch (RuntimeExecutionException e){
+                                
+                            }
                         }
                     });
                 }
@@ -160,6 +167,7 @@ public class DBManager {
                         } else {
                             firebaseFirestore.collection("users").document(googleId).set(map, SetOptions.merge());
                         }
+                        setAllTasksData();
                     }
                 });
             }

@@ -52,8 +52,8 @@ public class RvFragment extends Fragment {
         topic.setHasFixedSize(true);
         }
         if(adapter==null) {
-            DBInitThread thread = new DBInitThread(this);
-            thread.start();
+            DBManager manager = new DBManager();
+            manager.AccountCheck(MainActivity.getAccountId());
         }
         topic.setAdapter(this.adapter);
         iscreated=true;
